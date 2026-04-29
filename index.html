@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <!-- Zeichensatz -->
+  <meta charset="UTF-8">
+  <!-- Responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO Titel -->
+  <title>Contratista General en Los Angeles | Remodelaciones | J. Ureno Construction</title>
+  <!-- SEO Beschreibung -->
+  <meta name="description"
+    content="Contratista general en Los Angeles. Remodelación de cocinas, baños y casas completas.">
+  <!-- WICHTIG: nur eine Sprache -->
+  <link rel="canonical" href="https://www.j-ureno.com/index.html">
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container header-wrapper">
+
+      <!-- LOGO -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="logo.png" alt="RE&CO Logo" class="logo-img">
+        </a>
+      </div>
+
+      <!-- NAV -->
+      <nav id="mainNav">
+        <ul>
+          <div class="nav-indicator"></div>
+
+          <li><a href="#inicio" class="nav-link">Inicio</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#portfolio" class="nav-link">Portafolio</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <!-- MOBILE BUTTON -->
+      <div class="mobile-btn" onclick="toggleMenu()">☰</div>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero fade-in">
+
+    <div class="hero-content">
+
+      <h1 class="hero-title">
+
+        <span class="hero-main">
+          Remodelaciones Premium
+        </span>
+
+        <span class="hero-sub">
+          para propietarios que buscan calidad y resultados duraderos
+        </span>
+
+        <span class="hero-highlight">
+          sin complicaciones ni estrés
+        </span>
+
+      </h1>
+
+      <p class="hero-subtitle reveal">
+        Especialistas en cocinas, baños y renovaciones completas con acabados de lujo.
+      </p>
+
+      <!-- TRUST ELEMENT -->
+      <div class="hero-trust reveal">
+        ✔ +10 años de experiencia
+        ✔ Trabajo garantizado
+        ✔ Atención personalizada
+      </div>
+
+
+      <!-- CTA -->
+      <div class="hero-cta reveal">
+
+
+        <a href="#contacto" class="cta-btn primary">
+          Obtener Cotización Gratis
+        </a>
+
+        <a href="#portfolio" class="cta-btn secondary">
+          Ver Proyectos
+        </a>
+
+      </div>
+
+      <!-- TRUST BOOST LINE -->
+      <div class="hero-trust-mini reveal">
+        ✔ Respuesta en 24h · ✔ Presupuesto sin compromiso · ✔ +10 años experiencia
+      </div>
+    </div>
+
+
+  </section>
+
+
+
+  <!-- Servicios -->
+  <section id="servicios" class="section fade-in">
+    <h2 class="section-title">Servicios</h2>
+    <p class="section-intro">
+      Soluciones de remodelación diseñadas para elevar la calidad y el valor de tu propiedad.
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-image">
+          <img src="img1.jpg" alt="Remodelación de cocinas">
+        </div>
+        <h3>Remodelación de Cocinas</h3>
+        <p>Diseño moderno y funcional con acabados premium.</p>
+        <a href="#contacto" class="service-link">Solicitar cotización →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="img1.jpg" alt="Remodelación de cocinas">
+        </div>
+        <h3>Remodelación de Cocinas</h3>
+        <p>Diseño moderno y funcional con acabados premium.</p>
+        <a href="#contacto" class="service-link">Solicitar cotización →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="img1.jpg" alt="Remodelación de cocinas">
+        </div>
+        <h3>Remodelación de Cocinas</h3>
+        <p>Diseño moderno y funcional con acabados premium.</p>
+        <a href="#contacto" class="service-link">Solicitar cotización →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="img1.jpg" alt="Remodelación de cocinas">
+        </div>
+        <h3>Remodelación de Cocinas</h3>
+        <p>Diseño moderno y funcional con acabados premium.</p>
+        <a href="#contacto" class="service-link">Solicitar cotización →</a>
+      </div>
+
+
+    </div>
+
+  </section>
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section fade-in">
+    <h2 class="section-title">Portafolio</h2>
+    <p class="section-intro">
+      Proyectos reales que reflejan nuestro estándar de calidad y atención al detalle.
+    </p>
+    <div class="portfolio-filters">
+      <button onclick="filterSelection('all')">Todos</button>
+      <button onclick="filterSelection('kitchen')">Cocinas</button>
+      <button onclick="filterSelection('bathroom')">Baños</button>
+      <button onclick="filterSelection('house')">Casas</button>
+    </div>
+
+    <div class="portfolio-grid fade-in">
+
+      <div class="portfolio-item kitchen" onclick="openLightbox('img1.jpg')">
+        <img src="img1.jpg" alt="Remodelación de cocina moderna">
+      </div>
+
+      <div class="portfolio-item bathroom" onclick="openLightbox('img2.jpg')">
+        <img src="img2.jpg" alt="Remodelación de cocina moderna">
+      </div>
+
+      <div class="portfolio-item house" onclick="openLightbox('img3.jpg')">
+        <img src="img3.jpg" alt="Remodelación de cocina moderna">
+      </div>
+
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="Proyecto">
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="section contacto-section fade-in">
+    <h2 class="section-title">Contacto</h2>
+    <p class="section-intro">
+      Cuéntanos sobre tu proyecto y recibe una orientación profesional sin compromiso.
+    </p>
+    <form action="https://formspree.io/f/xxxxabcd" method="POST" autocomplete="on" class="premium-form">
+
+      <div class="input-group">
+        <input type="text" name="name" id="contact-name" required autocomplete="name">
+        <label for="contact-name">Nombre completo</label>
+        <span class="error-text">Este campo es obligatorio</span>
+      </div>
+      <div class="input-group">
+        <input type="email" name="email" id="contact-email" required autocomplete="email">
+        <label for="contact-email">Correo electrónico</label>
+        <span class="error-text">Email inválido</span>
+      </div>
+
+
+      <div class="input-group">
+        <textarea name="message" id="contact-message" required autocomplete="off"></textarea>
+        <label for="contact-message">Tu mensaje</label>
+        <span class="error-text">Escribe tu mensaje</span>
+      </div>
+      <button type="submit" class="btn-submit">Enviar Mensaje</button>
+    </form>
+    <div id="form-success" class="form-success">
+      <div class="success-box">
+        <h3>✔ Mensaje enviado</h3>
+        <p>Te responderemos en breve</p>
+      </div>
+    </div>
+    <!-- WHATSAPP OPTION -->
+    <div class="whatsapp-option">
+      <p>Cuéntanos sobre tu proyecto y te damos una orientación rápida</p>
+      <button onclick="sendWhatsApp()" class="btn-whatsapp-cta">
+        💬 Contactar por WhatsApp
+      </button>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 J. Ureno Construction</p>
+  </footer>
+  <!-- JS -->
+  <script src="main.js"></script>
+
+
+
+</body>
+
+</html>
