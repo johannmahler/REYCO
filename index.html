@@ -2,21 +2,87 @@
 <html lang="es">
 
 <head>
-  <!-- Zeichensatz -->
+
+  <!-- =========================
+       BASIC
+  ========================== -->
   <meta charset="UTF-8">
-  <!-- Responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- SEO Titel -->
-  <title>Contratista General en Los Angeles | Remodelaciones | J. Ureno Construction</title>
-  <!-- SEO Beschreibung -->
+
+  <!-- =========================
+       SEO
+  ========================== -->
+  <title>
+    Contratista General en Los Angeles | Remodelaciones Premium | J. Ureno Construction
+  </title>
+
   <meta name="description"
-    content="Contratista general en Los Angeles. Remodelación de cocinas, baños y casas completas.">
-  <!-- WICHTIG: nur eine Sprache -->
-  <link rel="canonical" href="https://www.j-ureno.com/index.html">
-  <!-- CSS -->
+    content="Especialistas en remodelación de cocinas, baños y casas completas en Los Angeles. Diseño premium, acabados de lujo y atención personalizada.">
+
+  <meta name="keywords"
+    content="contratista general los angeles, remodelación de cocinas, remodelación de baños, remodelación de casas, construction los angeles, kitchen remodel, bathroom remodel">
+
+  <meta name="author" content="J. Ureno Construction">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://www.j-ureno.com/">
+
+  <!-- =========================
+       OPEN GRAPH (SOCIAL MEDIA)
+  ========================== -->
+  <meta property="og:type" content="website">
+
+  <meta property="og:title" content="J. Ureno Construction | Remodelaciones Premium en Los Angeles">
+
+  <meta property="og:description"
+    content="Remodelaciones de cocinas, baños y casas completas con acabados premium y atención personalizada.">
+
+  <meta property="og:url" content="https://www.j-ureno.com/">
+
+  <meta property="og:image" content="https://www.j-ureno.com/preview.jpg">
+
+  <!-- =========================
+       TWITTER
+  ========================== -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="twitter:title" content="J. Ureno Construction | Remodelaciones Premium">
+
+  <meta name="twitter:description" content="Especialistas en remodelaciones premium en Los Angeles.">
+
+  <meta name="twitter:image" content="https://www.j-ureno.com/preview.jpg">
+
+  <!-- =========================
+       PERFORMANCE
+  ========================== -->
+  <meta name="theme-color" content="#222222">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- =========================
+       FONTS
+  ========================== -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- =========================
+       FAVICON
+  ========================== -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- =========================
+       CSS
+  ========================== -->
   <link rel="stylesheet" href="style.css">
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- =========================
+       JS
+  ========================== -->
+  <script src="main.js" defer></script>
+
 </head>
 
 <body>
@@ -26,32 +92,43 @@
 
       <!-- LOGO -->
       <div class="logo">
-        <a href="index.html">
-          <img src="logo.png" alt="RE&CO Logo" class="logo-img">
+        <a href="/">
+          <img src="logo.png" alt="RE&CO Logo" class="logo-img" width="160" height="48" loading="eager"
+            fetchpriority="high">
         </a>
       </div>
 
       <!-- NAV -->
       <nav id="mainNav">
+        <div class="nav-indicator"></div>
         <ul>
-          <div class="nav-indicator"></div>
 
-          <li><a href="#inicio" class="nav-link">Inicio</a></li>
-          <li><a href="#servicios" class="nav-link">Servicios</a></li>
-          <li><a href="#portfolio" class="nav-link">Portafolio</a></li>
-          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+          <li style="--i:1"><a href="#inicio">Inicio</a></li>
+          <li style="--i:2"><a href="#servicios">Servicios</a></li>
+          <li style="--i:3"><a href="#portfolio">Portafolio</a></li>
+          <li style="--i:4"><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
 
       <!-- MOBILE BUTTON -->
-      <div class="mobile-btn" onclick="toggleMenu()">☰</div>
+      <div class="mobile-btn" id="mobileBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
     </div>
   </header>
 
+
+
   <!-- HERO -->
   <section id="inicio" class="hero fade-in">
 
+    <!-- BACKGROUND -->
+    <div class="hero-bg"></div>
+
+    <!-- CONTENT -->
     <div class="hero-content">
 
       <h1 class="hero-title">
@@ -74,34 +151,35 @@
         Especialistas en cocinas, baños y renovaciones completas con acabados de lujo.
       </p>
 
-      <!-- TRUST ELEMENT -->
       <div class="hero-trust reveal">
         ✔ +10 años de experiencia
         ✔ Trabajo garantizado
         ✔ Atención personalizada
       </div>
 
-
       <!-- CTA -->
       <div class="hero-cta reveal">
 
+        <a href="#contacto" class="cta-btn primary" aria-label="Obtener cotización gratuita">
 
-        <a href="#contacto" class="cta-btn primary">
           Obtener Cotización Gratis
+
         </a>
 
-        <a href="#portfolio" class="cta-btn secondary">
+        <a href="#portfolio" class="cta-btn secondary" aria-label="Ver proyectos realizados">
+
           Ver Proyectos
+
         </a>
 
       </div>
 
-      <!-- TRUST BOOST LINE -->
+      <!-- MINI TRUST -->
       <div class="hero-trust-mini reveal">
         ✔ Respuesta en 24h · ✔ Presupuesto sin compromiso · ✔ +10 años experiencia
       </div>
-    </div>
 
+    </div>
 
   </section>
 
@@ -116,7 +194,7 @@
     <div class="services-grid">
       <div class="service-card">
         <div class="service-image">
-          <img src="img1.jpg" alt="Remodelación de cocinas">
+          <img src="img4.jpg" alt="Remodelación de cocinas" loading="lazy" decoding="async">
         </div>
         <h3>Remodelación de Cocinas</h3>
         <p>Diseño moderno y funcional con acabados premium.</p>
@@ -124,7 +202,15 @@
       </div>
       <div class="service-card">
         <div class="service-image">
-          <img src="img1.jpg" alt="Remodelación de cocinas">
+          <img src="img5.jpg" alt="Remodelación de canceleria" loading="lazy" decoding="async">
+        </div>
+        <h3>Remodelación de canceleria</h3>
+        <p>Diseño moderno y funcional con acabados premium.</p>
+        <a href="#contacto" class="service-link">Solicitar cotización →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-image">
+          <img src="img5.jpg" alt="Remodelación de cocinas" loading="lazy" decoding="async">
         </div>
         <h3>Remodelación de Cocinas</h3>
         <p>Diseño moderno y funcional con acabados premium.</p>
@@ -132,15 +218,7 @@
       </div>
       <div class="service-card">
         <div class="service-image">
-          <img src="img1.jpg" alt="Remodelación de cocinas">
-        </div>
-        <h3>Remodelación de Cocinas</h3>
-        <p>Diseño moderno y funcional con acabados premium.</p>
-        <a href="#contacto" class="service-link">Solicitar cotización →</a>
-      </div>
-      <div class="service-card">
-        <div class="service-image">
-          <img src="img1.jpg" alt="Remodelación de cocinas">
+          <img src="img1.jpg" alt="Remodelación de cocinas" loading="lazy" decoding="async">
         </div>
         <h3>Remodelación de Cocinas</h3>
         <p>Diseño moderno y funcional con acabados premium.</p>
@@ -181,8 +259,11 @@
     </div>
 
     <!-- LIGHTBOX -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-      <img id="lightbox-img" src="" alt="Proyecto">
+    <div id="lightbox" class="lightbox">
+      <div class="lightbox-content">
+
+        <img id="lightbox-img" src="" alt="">
+      </div>
     </div>
   </section>
 
@@ -228,12 +309,11 @@
     </div>
   </section>
   <!-- FOOTER -->
-  <footer>
-    <p>© 2025 J. Ureno Construction</p>
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 J. Ureno Construction · Todos los derechos reservados</p>
+    </div>
   </footer>
-  <!-- JS -->
-  <script src="main.js"></script>
-
 
 
 </body>

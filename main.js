@@ -1,111 +1,203 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ==========================
-    // MOBILE MENU
-    // ==========================
-    window.toggleMenu = function () {
-        const nav = document.getElementById("mainNav");
-        if (nav) nav.classList.toggle("open");
-    };
+    // =========================================================
+    // ELEMENTS
+    // =========================================================
 
-    document.querySelectorAll("#mainNav a").forEach(link => {
-        link.addEventListener("click", () => {
-            const nav = document.getElementById("mainNav");
-            if (nav) nav.classList.remove("open");
-        });
+    const body = document.body;
+    const header = document.querySelector("header");
+    const nav = document.getElementById("mainNav");
+    const mobileBtn = document.getElementById("mobileBtn");
+
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll('#mainNav a');
+
+
+
+    const heroBg = document.querySelector(".hero-bg");
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    // const closeBtn =
+    //     document.querySelector(".lightbox-close-btn"); // ✅ FIX
+
+    const form = document.querySelector(".premium-form");
+
+    // =========================================================
+    // MOBILE MENU
+    // =========================================================
+
+    function toggleMenu() {
+        nav?.classList.toggle("open");
+        mobileBtn?.classList.toggle("open");
+        body.classList.toggle("menu-open");
+    }
+
+    function closeMenu() {
+        nav?.classList.remove("open");
+        mobileBtn?.classList.remove("open");
+        body.classList.remove("menu-open");
+    }
+
+    mobileBtn?.addEventListener("click", toggleMenu);
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", closeMenu);
     });
 
-    // ==========================
+    // =========================================================
     // LIGHTBOX
-    // ==========================
-    window.openLightbox = function (src) {
-        const lightbox = document.getElementById("lightbox");
-        const img = document.getElementById("lightbox-img");
+    // =========================================================
 
-        if (!lightbox || !img) return;
+    let scrollPosition = 0;
 
-        img.src = src;
+    window.openLightbox = (src) => {
+
+        if (!lightbox || !lightboxImg) return;
+
+        // SAVE CURRENT POSITION
+        scrollPosition = window.scrollY;
+
+        // IMAGE
+        lightboxImg.src = src;
+
+        // SHOW LIGHTBOX
         lightbox.classList.add("show");
+
+        // LOCK BACKGROUND
+        body.style.position = "fixed";
+        body.style.top = `-${scrollPosition}px`;
+        body.style.width = "100%";
     };
 
-    window.closeLightbox = function () {
-        const lightbox = document.getElementById("lightbox");
-        if (lightbox) lightbox.classList.remove("show");
-    };
+    function closeLightbox() {
 
-    // ==========================
-    // FADE IN
-    // ==========================
-    const faders = document.querySelectorAll(".fade-in");
+        lightbox?.classList.remove("show");
 
-    const observerFade = new IntersectionObserver((entries, observer) => {
+        // RESTORE BODY
+        body.style.position = "";
+        body.style.top = "";
+        body.style.width = "";
+
+        // RESTORE SCROLL POSITION
+        window.scrollTo(0, scrollPosition);
+
+        // CLEAR IMAGE
+        if (lightboxImg) {
+            lightboxImg.src = "";
+        }
+    }
+
+    // window.closeLightbox = closeLightbox;
+
+
+
+    // BACKDROP CLOSE
+    lightbox?.addEventListener("click", (e) => {
+
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // CLOSE IMAGE CLICK
+    lightboxImg?.addEventListener("click", () => {
+        closeLightbox();
+    });
+
+    // ESC CLOSE
+    document.addEventListener("keydown", (e) => {
+
+        if (e.key === "Escape") {
+            closeLightbox();
+        }
+    });
+
+    // =========================================================
+    // FADE IN OBSERVER
+    // =========================================================
+
+    const fadeElements = document.querySelectorAll(".fade-in");
+
+    const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
+
             entry.target.classList.add("show");
-            observer.unobserve(entry.target);
+            fadeObserver.unobserve(entry.target);
         });
-    }, { threshold: 0.2 });
+    }, {
+        threshold: 0.15
+    });
 
-    faders.forEach(el => observerFade.observe(el));
+    fadeElements.forEach(el => fadeObserver.observe(el));
 
-    // ==========================
+    // =========================================================
     // PORTFOLIO FILTER
-    // ==========================
-    window.filterSelection = function (category) {
-        const items = document.querySelectorAll(".portfolio-item");
+    // =========================================================
 
-        items.forEach(item => {
-            item.classList.remove("show");
+    window.filterSelection = (category) => {
+        document.querySelectorAll(".portfolio-item").forEach(item => {
+            const visible =
+                category === "all" ||
+                item.classList.contains(category);
 
-            if (category === "all" || item.classList.contains(category)) {
-                item.classList.add("show");
-            }
+            item.classList.toggle("hide", !visible);
         });
     };
 
     filterSelection("all");
 
-    // ==========================
+    // =========================================================
     // WHATSAPP
-    // ==========================
-    window.sendWhatsApp = function () {
-        const name = document.getElementById("contact-name")?.value || "";
-        const email = document.getElementById("contact-email")?.value || "";
-        const message = document.getElementById("contact-message")?.value || "";
+    // =========================================================
 
-        const text = `Hola 👋, soy ${name}.
+    window.sendWhatsApp = () => {
+
+        const name =
+            document.getElementById("contact-name")?.value || "";
+
+        const message =
+            document.getElementById("contact-message")?.value || "";
+
+        const text =
+            `Hola, soy ${name}.
 
 Estoy interesado en una remodelación.
 
-📍 Tipo de proyecto:
+Proyecto:
 ${message}
-
-💰 Presupuesto estimado:
-(aprox.)
-
-📅 Tiempo para iniciar:
 
 ¿Podrían orientarme sobre disponibilidad y próximos pasos?`;
 
-        const phone = "5213313479076";
+        const phone = "4917684728565";
 
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, "_blank");
+        const url =
+            `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+        window.open(url, "_blank");
     };
 
-    // ==========================
+    // =========================================================
     // HEADER SCROLL
-    // ==========================
-    const header = document.querySelector("header");
+    // =========================================================
 
-    window.addEventListener("scroll", () => {
-        if (!header) return;
-        header.classList.toggle("scrolled", window.scrollY > 20);
-    });
+    function updateHeader() {
+        const currentScroll = window.scrollY;
 
-    // ==========================
-    // CLEAN SCROLL SYSTEM
-    // ==========================
-    function smoothScrollTo(target) {
+        header?.classList.toggle(
+            "scrolled",
+            currentScroll > 20
+        );
+    }
+
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    // =========================================================
+    // SMOOTH SCROLL
+    // =========================================================
+
+    function smoothScroll(target) {
         const el = document.querySelector(target);
         if (!el) return;
 
@@ -120,194 +212,150 @@ ${message}
         if (!link) return;
 
         const target = link.getAttribute("href");
-
         if (!target || target === "#") return;
 
         e.preventDefault();
-
-        smoothScrollTo(target);
-
-        const nav = document.getElementById("mainNav");
-        if (nav) nav.classList.remove("open");
+        smoothScroll(target);
+        closeMenu();
     });
 
-    // ==========================
-    // SCROLL SPY + INDICATOR
-    // ==========================
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("#mainNav a");
-    const indicator = document.querySelector(".nav-indicator");
+    // =========================================================
+    // SCROLL SPY
+    // =========================================================
 
-    function moveIndicator(link) {
-        if (!indicator || !link) return;
+    function setActiveLink() {
+        let currentSection = "";
 
-        const rect = link.getBoundingClientRect();
-        const parentRect = link.parentElement.parentElement.getBoundingClientRect();
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
 
-        indicator.style.width = rect.width + "px";
-        indicator.style.left = (rect.left - parentRect.left) + "px";
-    }
-
-    // HOVER + FIX (kein glitch)
-    navLinks.forEach(link => {
-        link.addEventListener("mouseenter", () => moveIndicator(link));
-
-        link.addEventListener("mouseleave", () => {
-            const activeLink = document.querySelector("#mainNav a.active");
-            if (activeLink) moveIndicator(activeLink);
+            if (
+                rect.top <= window.innerHeight * 0.4 &&
+                rect.bottom >= window.innerHeight * 0.4
+            ) {
+                currentSection = section.id;
+            }
         });
-    });
 
-    let currentActive = "";
-
-    function updateMenu() {
         navLinks.forEach(link => {
-            const target = link.getAttribute("href")?.replace("#", "");
+            const href = link.getAttribute("href");
 
-            if (target === currentActive) {
-                link.classList.add("active");
-                moveIndicator(link);
-            } else {
-                link.classList.remove("active");
-            }
+            link.classList.toggle(
+                "active",
+                href === `#${currentSection}`
+            );
         });
     }
 
-    const spy = new IntersectionObserver(
-        (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    currentActive = entry.target.id;
-                    updateMenu();
-                }
-            });
-        },
-        {
-            threshold: 0.3,
-            rootMargin: "-30% 0px -20% 0px"
+    window.addEventListener("scroll", setActiveLink, { passive: true });
+    window.addEventListener("load", setActiveLink);
+
+    // =========================================================
+    // PARALLAX
+    // =========================================================
+
+    if (heroBg) {
+        let ticking = false;
+
+        function updateParallax() {
+            const offset = window.scrollY * 0.25;
+            heroBg.style.transform = `translateY(${offset}px) scale(1.1)`;
+            ticking = false;
         }
-    );
 
-    sections.forEach(sec => spy.observe(sec));
-    window.addEventListener("scroll", () => {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
-            currentActive = "contacto";
-            updateMenu();
-        }
-    });
-
-});
-
-
-// ==========================
-// PARALLAX (SAFE)
-// ==========================
-const heroBg = document.querySelector(".hero-bg");
-
-if (heroBg) {
-    window.addEventListener("scroll", () => {
-        heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-    });
-}
-
-
-// ==========================
-// FORM VALIDATION + SUBMIT
-// ==========================
-const groups = document.querySelectorAll(".input-group");
-
-groups.forEach(group => {
-    const input = group.querySelector("input, textarea");
-
-    if (!input) return;
-
-    input.addEventListener("blur", () => validate(input, group));
-    input.addEventListener("input", () => liveValidate(input, group));
-});
-
-function validate(input, group) {
-    const value = input.value.trim();
-
-    if (value === "") {
-        group.classList.add("error");
-        group.classList.remove("success");
-        return;
+        window.addEventListener("scroll", () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
     }
 
-    if (input.type === "email") {
-        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    // =========================================================
+    // FORM VALIDATION
+    // =========================================================
 
-        if (!valid) {
-            group.classList.add("error");
-            group.classList.remove("success");
-            return;
+    if (form) {
+
+        const groups = form.querySelectorAll(".input-group");
+        const button = form.querySelector(".btn-submit");
+        const successUI = document.getElementById("form-success");
+
+        function validateInput(input, group) {
+
+            const value = input.value.trim();
+            let valid = value !== "";
+
+            if (valid && input.type === "email") {
+                valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+            }
+
+            group.classList.toggle("error", !valid);
+            group.classList.toggle("success", valid);
+
+            return valid;
         }
-    }
 
-    group.classList.remove("error");
-    group.classList.add("success");
-}
+        groups.forEach(group => {
 
-function liveValidate(input, group) {
-    if (group.classList.contains("error")) {
-        validate(input, group);
-    }
-}
-
-const form = document.querySelector(".premium-form");
-
-if (form) {
-    const button = form.querySelector(".btn-submit");
-    const successUI = document.getElementById("form-success");
-
-    form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-
-        let valid = true;
-
-        document.querySelectorAll(".input-group").forEach(group => {
             const input = group.querySelector("input, textarea");
+            if (!input) return;
 
-            if (!input || !input.value.trim()) {
-                group.classList.add("error");
-                valid = false;
-            } else {
-                group.classList.remove("error");
-            }
+            input.addEventListener("blur", () => {
+                validateInput(input, group);
+            });
+
+            input.addEventListener("input", () => {
+                if (group.classList.contains("error")) {
+                    validateInput(input, group);
+                }
+            });
         });
 
-        if (!valid) return;
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        button.classList.add("loading");
+            let valid = true;
 
-        try {
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: new FormData(form),
-                headers: {
-                    "Accept": "application/json"
+            groups.forEach(group => {
+                const input = group.querySelector("input, textarea");
+                if (!input) return;
+
+                if (!validateInput(input, group)) {
+                    valid = false;
                 }
             });
 
-            if (response.ok) {
-                button.classList.remove("loading");
-                button.classList.add("success");
+            if (!valid) return;
 
-                setTimeout(() => {
-                    successUI?.classList.add("show");
-                }, 500);
+            button?.classList.add("loading");
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form),
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                if (!response.ok) throw new Error();
+
+                button?.classList.remove("loading");
+                button?.classList.add("success");
+
+                successUI?.classList.add("show");
+
+                form.reset();
 
                 setTimeout(() => {
                     window.location.href = "gracias.html";
-                }, 2500);
+                }, 2200);
 
-            } else {
-                throw new Error();
+            } catch {
+                button?.classList.remove("loading");
+                alert("❌ No se pudo enviar el mensaje.");
             }
-
-        } catch (error) {
-            button.classList.remove("loading");
-            alert("❌ Mensaje NO enviado");
-        }
-    });
-}
+        });
+    }
+});

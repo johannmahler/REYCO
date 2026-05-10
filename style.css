@@ -1,39 +1,23 @@
 :root {
-
-    /* =========================
-       BRAND COLORS
-    ========================= */
+    /* ========================= BRAND COLORS ========================= */
     --color-primary: #222;
     --color-accent: #d4af37;
-
-    /* =========================
-       TEXT SYSTEM
-    ========================= */
+    /* ========================= TEXT SYSTEM ========================= */
     --text-strong: #222;
     --text-medium: #333;
     --text-light: #666;
     --text-muted: #888;
-
-    /* =========================
-       BACKGROUND SYSTEM
-    ========================= */
+    /* ========================= BACKGROUND SYSTEM ========================= */
     --bg-main: #ffffff;
     --bg-soft: #fafafa;
     --bg-light: #f5f5f5;
-
-    /* =========================
-       BORDER / UI
-    ========================= */
+    /* ========================= BORDER / UI ========================= */
     --border-light: #e5e5e5;
-
-    /* =========================
-       SHADOW SYSTEM
-    ========================= */
+    /* ========================= SHADOW SYSTEM ========================= */
     --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.05);
     --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.08);
     --shadow-strong: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
-
 
 /* RESET */
 * {
@@ -79,15 +63,7 @@ header.scrolled .header-wrapper {
     align-items: center;
 }
 
-.logo-text {
-    font-weight: 600;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #222;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
+
 
 /* Hover Effekt (Premium Feeling) */
 .logo-text:hover {
@@ -96,14 +72,6 @@ header.scrolled .header-wrapper {
 }
 
 
-
-
-
-/* MOBILE MENU */
-.mobile-btn {
-    display: none;
-    font-size: 24px;
-}
 
 .mobile-menu {
     display: none;
@@ -115,42 +83,44 @@ header.scrolled .header-wrapper {
     padding: 10px;
 }
 
-/* HERO */
-.hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    overflow: hidden;
 
-    /* NEU: stabile Premium Background Basis */
-    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-        url('img1.jpg');
-    background-size: cover;
-    background-position: center;
-}
+
 
 .hero::after {
     display: none;
 }
 
-/* PORTFOLIO */
-
+/*  =============================== */
+/* ============= PORTFOLIO ========================== */
 .portfolio-item {
     position: relative;
     overflow: hidden;
     cursor: pointer;
     border-radius: 10px;
+    display: block;
+    opacity: 1;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease;
     box-shadow: var(--shadow-soft);
 }
 
+/* =========================================
+   PORTFOLIO IMAGE
+========================================= */
+
 .portfolio-item img {
+
     width: 100%;
-    transition: 0.3s;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
+
+/* =========================================
+   PORTFOLIO IMAGE HOVER
+========================================= */
 
 .portfolio-item:hover img {
     transform: scale(1.1);
@@ -165,60 +135,7 @@ header.scrolled .header-wrapper {
     text-align: center;
 }
 
-/* FORM */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-input,
-textarea {
-    padding: 10px;
-}
-
-button,
-a {
-    transition: all 0.3s ease;
-}
-
-button:hover,
-a:hover {
-    transform: translateY(-2px);
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-    nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-
-        display: none;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav.open {
-        display: flex;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 0;
-    }
-
-    .mobile-btn {
-        display: block;
-    }
-}
-
 /* ===== PORTFOLIO PRO ===== */
-
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -226,25 +143,6 @@ a:hover {
     padding: 20px;
 }
 
-.portfolio-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-/* IMAGE */
-.portfolio-item img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-/* HOVER ZOOM */
-.portfolio-item:hover img {
-    transform: scale(1.1);
-}
 
 /* OVERLAY */
 .portfolio-overlay {
@@ -273,33 +171,41 @@ a:hover {
     margin-bottom: 5px;
 }
 
-/* ===== LIGHTBOX ===== */
-
-.lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-}
-
-.lightbox.show {
+/* FORM */
+form {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+
+input,
+textarea {
+    padding: 10px;
+}
+
+button,
+a {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-submit,
+.portfolio-filters button {
+    position: relative;
+    z-index: 5;
+}
+
+button:hover,
+a:hover {
+    transform: translateY(-2px);
+}
+
+
+
+
+
+
 
 /* ===== WOW ANIMATION ===== */
-
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -318,16 +224,21 @@ a:hover {
 }
 
 .portfolio-filters button {
-    margin: 5px;
-    padding: 10px 15px;
+    background: var(--color-accent);
+    color: #111;
+    border-radius: 6px;
+    font-weight: 600;
+    padding: 10px 14px;
     border: none;
-    background: #222;
-    color: white;
-    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    display: inline-block;
+    opacity: 1;
+    z-index: 10;
 }
 
 /* HIDE ITEMS */
-.portfolio-item {
+
+.portfolio-item.hide {
     display: none;
 }
 
@@ -335,62 +246,7 @@ a:hover {
     display: block;
 }
 
-
-
-
-
-/* cta button cotizacion */
-.cta-btn {
-    margin-top: 20px;
-    background: var(--color-accent);
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-soft);
-}
-
-.cta-btn.primary {
-    font-size: 1.05rem;
-    padding: 16px 32px;
-    background: linear-gradient(135deg, #d4af37, #f5d76e);
-    color: #111;
-    font-weight: 600;
-    border: none;
-    position: relative;
-    overflow: hidden;
-}
-
-/* subtle shine animation */
-.cta-btn.primary::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    transform: skewX(-20deg);
-    transition: 0.6s;
-}
-
-.cta-btn.primary:hover::before {
-    left: 120%;
-}
-
-.cta-btn.primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.25);
-}
-
-.cta-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-medium);
-}
-
 /* section form contacto */
-
 .contacto-section {
     padding: 80px 20px;
 }
@@ -447,7 +303,6 @@ a:hover {
     border-radius: 8px;
     font-size: 0.95rem;
     background: #fff;
-
     transition: all 0.25s ease;
 }
 
@@ -462,11 +317,7 @@ a:hover {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--color-accent);
-
-    box-shadow:
-        0 0 0 3px rgba(255, 153, 0, 0.15),
-        0 8px 20px rgba(0, 0, 0, 0.05);
-
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.05);
     transform: translateY(-1px);
 }
 
@@ -483,8 +334,6 @@ a:hover {
 .btn-primary:hover {
     background: #444;
 }
-
-
 
 /* whatsapp contacto form */
 .whatsapp-option {
@@ -507,7 +356,6 @@ a:hover {
     border-radius: 8px;
     cursor: pointer;
     display: inline-block;
-
     transition: all 0.3s ease;
     box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
 }
@@ -523,10 +371,7 @@ a:hover {
     transform: scale(0.98);
 }
 
-/* =========================
-   LUXURY LOGO ANIMATION
-========================= */
-
+/* ========================= LUXURY LOGO ANIMATION ========================= */
 .logo-text {
     font-weight: 600;
     font-size: 1.4rem;
@@ -536,11 +381,10 @@ a:hover {
     color: #222;
     text-decoration: none;
     display: inline-block;
-
     opacity: 0;
     transform: translateY(-10px);
-
     animation: logoIntro 1.2s ease forwards;
+
 }
 
 /* Hover (subtil luxury feel) */
@@ -569,32 +413,23 @@ a:hover {
     }
 }
 
-/* =========================
-   PREMIUM HEADER UX
-========================= */
-
+/* ========================= PREMIUM HEADER UX ========================= */
 header {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
 
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
+    /* GPU layer */
 }
 
-/* kleiner Shadow beim Scroll */
 header.scrolled {
-    box-shadow: var(--shadow-medium);
-    background: rgba(255, 255, 255, 0.6);
-
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 /* Layout sauber halten */
@@ -607,73 +442,126 @@ header.scrolled {
     margin: 0 auto;
 }
 
-/* NAV LINKS */
-nav ul {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-}
 
-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    position: relative;
+/* =========================================================
+   PREMIUM NAVIGATION
+========================================================= */
 
-    transition: color 0.3s ease;
-}
-
-/* ACTIVE MENU LINK */
-nav a.active {
-    color: var(--color-accent);
-}
-
-/* NAV */
+/* =========================================
+   NAV CONTAINER
+========================================= */
 
 nav {
+
     display: flex;
+    align-items: center;
+
+    position: relative;
 }
+
+/* =========================================
+   NAV LIST
+========================================= */
 
 nav ul {
+
     display: flex;
+    align-items: center;
+
     gap: 20px;
+
     list-style: none;
+
+    margin: 0;
+    padding: 0;
 }
+
+/* =========================================
+   NAV LINKS
+========================================= */
 
 nav a {
+
+    position: relative;
+
+    display: inline-block;
+
+    padding: 6px 0;
+
     text-decoration: none;
+
     color: var(--text-medium);
+
+    font-weight: 500;
+
+    line-height: 1;
+
+    transition:
+        color 0.3s ease,
+        opacity 0.3s ease;
 }
 
-nav a.active {
-    color: var(--color-accent);
+/* =========================================
+   UNDERLINE EFFECT
+========================================= */
+
+nav a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+
+    height: 2px;
+
+    background: var(--color-accent);
+
+    transition: width 0.3s ease;
 }
 
+/* =========================================
+   HOVER STATE
+========================================= */
 
+nav a:hover::after {
 
+    width: 100%;
+}
 
+/* =========================================
+   ACTIVE STATE
+========================================= */
 
+nav a.active::after {
 
-/* Hover underline animation */
+    width: 100%;
+}
 
+/* =========================================
+   HOVER COLOR
+========================================= */
 
 nav a:hover {
-    color: var(--color-accent);
+
+    color: var(--text-strong);
 }
+
 
 section {
     scroll-margin-top: 80px;
 }
 
 /* ===== SERVICES ===== */
-
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
 }
-
 
 .service-card:hover {
     transform: translateY(-5px);
@@ -691,7 +579,6 @@ section {
 }
 
 /* ===== SERVICES PREMIUM ===== */
-
 .service-card {
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.04);
@@ -746,7 +633,6 @@ section {
 }
 
 /* ===== SERVICE IMAGES ===== */
-
 .service-image {
     width: 100%;
     height: 180px;
@@ -777,61 +663,68 @@ section {
     color: #222;
 }
 
-/* .section-title::after {
-    content: "";
-    display: block;
-    width: 40px;
-    height: 2px;
-    background: linear-gradient(to right, transparent, var(--color-accent), transparent);
-    margin: 10px auto 0;
-} */
+/* HERO */
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    margin-bottom: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    isolation: isolate;
+}
+
+/* =========================
+   HERO BACKGROUND
+========================= */
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
+        url('img1.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+
+    will-change: transform;
+    transform: scale(1.1);
+}
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    padding: 20px;
+}
 
 
-
-
-/* ==========================
-   SECTION DIVIDER (PREMIUM)
-   ========================== */
-
+/* ========================== SECTION DIVIDER (PREMIUM) ========================== */
 .section {
     position: relative;
     padding: 0;
     /* wird individuell gesteuert */
 }
 
-/* Linie zwischen Sections */
-/* .section:not(:last-of-type)::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.2), transparent);
-    margin: 40px auto 0 auto;
-    border-radius: 2px;
-} */
 
-/* =========================
-   HERO CONVERSION BOOST
-========================= */
-
-.hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.4),
-            rgba(0, 0, 0, 0.4)), url('img1.jpg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-}
-
-/* CONTENT BOX */
-.hero-content {
-    max-width: 700px;
-    padding: 20px;
-}
 
 /* HEADLINE */
 .hero h1 {
@@ -871,29 +764,141 @@ section {
     margin-top: 25px;
 }
 
-/* PRIMARY BUTTON */
+/* =========================================================
+   PREMIUM CTA BUTTON SYSTEM
+========================================================= */
+
+/* =========================================
+   BASE BUTTON
+========================================= */
+
+.cta-btn {
+
+    position: relative;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 14px 28px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+    font-size: 1rem;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+
+    z-index: 5;
+}
+
+/* =========================================
+   GLOBAL HOVER
+========================================= */
+
+.cta-btn:hover {
+
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
 .cta-btn.primary {
-    background: var(--color-accent);
-    color: white;
+
+    background: linear-gradient(135deg,
+            #d4af37,
+            #f5d76e);
+
+    color: #111;
+
+    box-shadow:
+        0 10px 30px rgba(212, 175, 55, 0.2);
 }
 
-/* SECONDARY BUTTON */
+/* =========================================
+   PRIMARY SHINE EFFECT
+========================================= */
+
+.cta-btn.primary::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.35);
+
+    transform: skewX(-20deg);
+
+    transition: 0.6s ease;
+}
+
+/* =========================================
+   SHINE ANIMATION
+========================================= */
+
+.cta-btn.primary:hover::before {
+
+    left: 120%;
+}
+
+/* =========================================
+   PRIMARY HOVER
+========================================= */
+
+.cta-btn.primary:hover {
+
+    box-shadow:
+        0 15px 35px rgba(212, 175, 55, 0.3);
+}
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
 .cta-btn.secondary {
+
     background: transparent;
+
     border: 1px solid white;
+
     color: white;
 }
 
-/* HOVER */
+/* =========================================
+   SECONDARY HOVER
+========================================= */
+
 .cta-btn.secondary:hover {
+
     background: white;
+
     color: #222;
 }
 
-/* =========================
-   HERO CINEMATIC ANIMATION
-========================= */
 
+
+
+
+
+/* ========================= HERO CINEMATIC ANIMATION ========================= */
 /* TITLE LINES */
 .hero-title span {
     display: block;
@@ -951,58 +956,7 @@ section {
     }
 }
 
-/* ===== REAL PARALLAX ===== */
 
-.hero {
-    position: relative;
-    overflow: hidden;
-}
-
-
-
-
-/* =========================
-   HERO VIDEO BACKGROUND
-========================= */
-
-.hero {
-    position: relative;
-    overflow: hidden;
-}
-
-
-
-
-
-@media (max-width: 768px) {
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    .hero-cta {
-        flex-direction: column;
-    }
-
-    .cta-btn {
-        width: 100%;
-        text-align: center;
-    }
-
-}
-
-/* =========================
-   ULTRA SPACING SYSTEM
-========================= */
-
-/* HERO (bleibt full screen) */
-.hero {
-    margin-bottom: 60px;
-}
 
 /* SERVICES */
 #servicios {
@@ -1019,10 +973,7 @@ section {
     padding: 40px 20px 60px;
 }
 
-/* =========================
-   SECTION COLOR SYSTEM
-========================= */
-
+/* ========================= SECTION COLOR SYSTEM ========================= */
 /* Standard = weiß */
 .section {
     background: #fff;
@@ -1038,82 +989,13 @@ section {
     background: #fafafa;
 }
 
-/* =========================
-   PREMIUM FORM (APPLE STYLE)
-========================= */
-
+/* ========================= PREMIUM FORM (APPLE STYLE) ========================= */
 .premium-form {
     max-width: 500px;
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-/* GROUP */
-.form-group {
-    position: relative;
-}
-
-/* INPUT + TEXTAREA */
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 14px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    outline: none;
-    background: transparent;
-    transition: 0.25s ease;
-}
-
-/* FOCUS */
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: var(--color-accent);
-}
-
-/* LABEL */
-.form-group label {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.85rem;
-    color: #777;
-    pointer-events: none;
-    transition: 0.25s ease;
-    background: white;
-    padding: 0 5px;
-}
-
-/* FLOAT EFFECT */
-.form-group input:focus+label,
-.form-group input:not(:placeholder-shown)+label,
-.form-group textarea:focus+label,
-.form-group textarea:not(:placeholder-shown)+label {
-    top: -8px;
-    font-size: 0.7rem;
-    color: var(--color-accent);
-}
-
-/* ERROR MESSAGE */
-.error-msg {
-    font-size: 0.7rem;
-    color: red;
-    display: none;
-    margin-top: 4px;
-}
-
-/* ERROR STATE */
-.form-group.error input,
-.form-group.error textarea {
-    border-color: red;
-}
-
-.form-group.error .error-msg {
-    display: block;
 }
 
 /* BUTTON */
@@ -1131,166 +1013,6 @@ section {
     opacity: 0.9;
 }
 
-/* =========================
-   LUXURY INPUT GLOW
-========================= */
-
-.form-group input,
-.form-group textarea {
-    transition: all 0.3s ease;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-}
-
-/* FOCUS GLOW */
-.form-group input:focus,
-.form-group textarea:focus {
-    box-shadow:
-        0 0 0 2px rgba(255, 255, 255, 0.6),
-        0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* HOVER (subtle pre-glow) */
-.form-group input:hover,
-.form-group textarea:hover {
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-/* ACTIVE CLICK (feels tactile) */
-.form-group input:active,
-.form-group textarea:active {
-    transform: scale(0.995);
-}
-
-/* =========================
-   FLOATING LABELS (APPLE STYLE)
-========================= */
-
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-/* INPUT + TEXTAREA */
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    padding: 16px 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    background: #fff;
-    outline: none;
-
-    transition: all 0.25s ease;
-}
-
-/* TEXTAREA FIX */
-.input-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-/* LABEL */
-.input-group label {
-    position: absolute;
-    left: 12px;
-    top: 16px;
-    color: #999;
-    font-size: 0.9rem;
-    pointer-events: none;
-
-    transition: all 0.25s ease;
-}
-
-/* FLOAT EFFECT */
-.input-group input:focus+label,
-.input-group input:not(:placeholder-shown)+label,
-.input-group textarea:focus+label,
-.input-group textarea:not(:placeholder-shown)+label {
-    top: -8px;
-    left: 10px;
-    font-size: 0.7rem;
-    color: var(--color-accent);
-    background: white;
-    padding: 0 6px;
-}
-
-/* FOCUS STYLE */
-.input-group input:focus,
-.input-group textarea:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.15);
-}
-
-/* =========================
-   FLOATING + VALIDATION SYSTEM
-========================= */
-
-.input-group {
-    position: relative;
-    margin-bottom: 22px;
-}
-
-/* INPUTS */
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    padding: 16px 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    background: #fff;
-    outline: none;
-
-    transition: all 0.25s ease;
-}
-
-/* TEXTAREA */
-.input-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-/* LABEL */
-.input-group label {
-    position: absolute;
-    left: 12px;
-    top: 16px;
-    color: #999;
-    font-size: 0.9rem;
-    pointer-events: none;
-    transition: all 0.25s ease;
-}
-
-/* FLOAT */
-.input-group input:focus+label,
-.input-group input:valid+label,
-.input-group textarea:focus+label,
-.input-group textarea:valid+label {
-    top: -8px;
-    left: 10px;
-    font-size: 0.7rem;
-    color: var(--color-accent);
-    background: white;
-    padding: 0 6px;
-}
-
-/* FOCUS (LUXURY) */
-.input-group input:focus,
-.input-group textarea:focus {
-    border-color: var(--color-accent);
-    box-shadow:
-        0 0 0 3px rgba(255, 153, 0, 0.15),
-        0 10px 25px rgba(0, 0, 0, 0.05);
-}
-
-/* ERROR STATE */
-.input-group.error input,
-.input-group.error textarea {
-    border-color: #e63946;
-}
-
 /* ERROR TEXT */
 .error-text {
     font-size: 0.75rem;
@@ -1299,21 +1021,9 @@ section {
     display: none;
 }
 
-/* SHOW ERROR */
-.input-group.error .error-text {
-    display: block;
-}
 
-/* VALID STATE */
-.input-group.success input,
-.input-group.success textarea {
-    border-color: #2a9d8f;
-}
 
-/* =========================
-   SUBMIT BUTTON ANIMATION
-========================= */
-
+/* ========================= SUBMIT BUTTON ANIMATION ========================= */
 .btn-submit {
     position: relative;
     overflow: hidden;
@@ -1335,7 +1045,6 @@ section {
     border: 2px solid white;
     border-top: 2px solid transparent;
     border-radius: 50%;
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1357,7 +1066,6 @@ section {
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     font-size: 18px;
-
     animation: checkPop 0.4s ease forwards;
 }
 
@@ -1374,26 +1082,19 @@ section {
     }
 }
 
-/* =========================
-   SUCCESS OVERLAY
-========================= */
-
+/* ========================= SUCCESS OVERLAY ========================= */
 .form-success {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     background: rgba(0, 0, 0, 0.6);
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     opacity: 0;
     pointer-events: none;
-
     transition: 0.4s ease;
     z-index: 3000;
 }
@@ -1408,10 +1109,8 @@ section {
     padding: 30px;
     border-radius: 12px;
     text-align: center;
-
     transform: translateY(30px);
     opacity: 0;
-
     animation: successIn 0.5s ease forwards;
 }
 
@@ -1423,6 +1122,174 @@ section {
 }
 
 
+/* =========================================================
+   PREMIUM FORM SYSTEM
+========================================================= */
+
+/* =========================================
+   INPUT GROUP
+========================================= */
+
+.input-group {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+/* =========================================
+   INPUTS + TEXTAREA
+========================================= */
+
+.input-group input,
+.input-group textarea {
+
+    width: 100%;
+
+    padding: 16px 12px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    font-size: 0.95rem;
+
+    background: #fff;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.input-group textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+/* =========================================
+   LABEL
+========================================= */
+
+.input-group label {
+
+    position: absolute;
+
+    left: 12px;
+    top: 16px;
+
+    color: #999;
+
+    font-size: 0.9rem;
+
+    pointer-events: none;
+
+    transition: all 0.25s ease;
+}
+
+/* =========================================
+   FLOATING LABEL
+========================================= */
+
+.input-group input:focus+label,
+.input-group input:valid+label,
+.input-group textarea:focus+label,
+.input-group textarea:valid+label {
+
+    top: -8px;
+    left: 10px;
+
+    font-size: 0.7rem;
+
+    color: var(--color-accent);
+
+    background: white;
+
+    padding: 0 6px;
+}
+
+/* =========================================
+   FOCUS EFFECT
+========================================= */
+
+.input-group input:focus,
+.input-group textarea:focus {
+
+    border-color: var(--color-accent);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 153, 0, 0.15),
+        0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   HOVER EFFECT
+========================================= */
+
+.input-group input:hover,
+.input-group textarea:hover {
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   ACTIVE CLICK EFFECT
+========================================= */
+
+.input-group input:active,
+.input-group textarea:active {
+
+    transform: scale(0.995);
+}
+
+/* =========================================
+   ERROR STATE
+========================================= */
+
+.input-group.error input,
+.input-group.error textarea {
+
+    border-color: #e63946;
+}
+
+/* =========================================
+   SUCCESS STATE
+========================================= */
+
+.input-group.success input,
+.input-group.success textarea {
+
+    border-color: #2a9d8f;
+}
+
+/* =========================================
+   ERROR TEXT
+========================================= */
+
+.error-text {
+
+    display: none;
+
+    margin-top: 5px;
+
+    font-size: 0.75rem;
+
+    color: #e63946;
+}
+
+/* =========================================
+   SHOW ERROR TEXT
+========================================= */
+
+.input-group.error .error-text {
+
+    display: block;
+}
 
 /* MAIN LINE */
 .hero-main {
@@ -1479,30 +1346,340 @@ header.scrolled .logo-img {
     text-align: center;
     max-width: 600px;
     margin: -10px auto 30px;
-
     font-size: 0.95rem;
     color: var(--text-light);
     line-height: 1.6;
 }
 
-/* =========================
-   NAV INDICATOR (PREMIUM)
-========================= */
+/* =========================================================
+   MOBILE NAVIGATION
+   STABILE BASIS
+========================================================= */
 
-#mainNav {
-    position: relative;
+@media (max-width: 768px) {
+
+    /* =========================
+       MOBILE BUTTON
+    ========================= */
+
+
+
+    #mainNav {
+        /* will-change: transform, opacity; */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 82%;
+        max-width: 340px;
+        height: 100vh;
+
+        /* =========================
+       PREMIUM GLASS EFFECT
+    ========================= */
+        background: rgba(255, 255, 255, 0.92);
+
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+
+        /* fallback blur */
+        -webkit-backdrop-filter: blur(20px);
+
+        /* =========================
+       LUXURY SHADOW
+    ========================= */
+        box-shadow:
+            -20px 0 40px rgba(0, 0, 0, 0.12),
+            -8px 0 18px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 30px;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(100%);
+        transition:
+            opacity 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+            transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+            visibility 0.45s ease;
+    }
+
+
+    /* =========================
+       OPEN STATE
+    ========================= */
+    #mainNav.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+
+    /* =========================
+       NAV LIST
+    ========================= */
+    #mainNav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+
+
+
+    /* =========================
+       NAV LINKS
+    ========================= */
+    #mainNav ul li a {
+        display: block;
+        padding: 12px 20px;
+        text-decoration: none;
+        color: #222;
+        font-size: 1rem;
+    }
+
+    /* =========================
+       HERO MOBILE
+    ========================= */
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+    }
+
+    .cta-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
-.nav-indicator {
-    position: absolute;
-    bottom: 6px;
+
+/* =========================
+   HAMBURGER → X ANIMATION
+========================= */
+
+.mobile-btn {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    /* =========================
+   HAMBURGER BASE (DESKTOP DEFAULT)
+========================= */
+    display: none;
+}
+
+.mobile-btn span {
     height: 2px;
-    background: var(--color-accent);
+    width: 24px;
+    background: #222;
     border-radius: 2px;
+    transition: all 0.35s ease;
+}
 
-    width: 0;
-    left: 0;
+/* =========================
+   OPEN STATE (X ICON)
+========================= */
+.mobile-btn.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
 
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: width, left;
+.mobile-btn.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-btn.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+
+/* =========================
+   MOBILE ONLY
+========================= */
+@media (max-width: 768px) {
+
+    .mobile-btn {
+        display: flex;
+        width: 46px;
+        height: 46px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 3001;
+    }
+
+    .mobile-btn span {
+        height: 2px;
+        width: 24px;
+        background: #222;
+        border-radius: 2px;
+        transition: all 0.35s ease;
+    }
+
+    /* X ANIMATION */
+    .mobile-btn.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .mobile-btn.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-btn.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* =========================================================
+   ULTRA CLEAN STAGGER ANIMATION (MOBILE MENU LINKS)
+   → nur aktiv wenn Menü geöffnet wird
+========================================================= */
+
+    /* Ausgangszustand: unsichtbar + leicht nach rechts verschoben */
+    #mainNav ul li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+            opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        transition-delay: calc(var(--i) * 0.05s);
+
+    }
+
+    /* Wenn Menü geöffnet ist → Links erscheinen */
+    #mainNav.open ul li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+
+    /* CLOSE (explizit sauber) */
+    #mainNav:not(.open) ul li {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+
+/* =========================================================
+   PREMIUM LIGHTBOX
+========================================================= */
+
+/* =========================================
+   LIGHTBOX OVERLAY
+========================================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    z-index: 9999;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+/* =========================================
+   SHOW LIGHTBOX
+========================================= */
+
+.lightbox.show {
+
+    display: flex;
+}
+
+/* =========================================
+   LIGHTBOX CONTENT
+========================================= */
+
+.lightbox-content {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   LIGHTBOX IMAGE
+========================================= */
+
+.lightbox-content img {
+
+    width: auto;
+
+    max-width: 100%;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45);
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+/* =========================================
+   IMAGE HOVER
+========================================= */
+
+.lightbox-content img:hover {
+
+    transform: scale(1.01);
+}
+
+/* =========================================
+   MOBILE OPTIMIZATION
+========================================= */
+
+@media (max-width: 768px) {
+
+    .lightbox {
+
+        padding: 14px;
+    }
+
+    .lightbox-content img {
+
+        max-height: 78vh;
+
+        border-radius: 10px;
+    }
 }
