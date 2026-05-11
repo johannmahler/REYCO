@@ -148,6 +148,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filterSelection("all");
 
+
+    // =========================================================
+    // SERVICE CARD FLIP (MOBILE)
+    // =========================================================
+
+    const serviceCards =
+        document.querySelectorAll(".service-card");
+
+    serviceCards.forEach(card => {
+
+        card.addEventListener("click", (e) => {
+
+            // LINKS IGNORIEREN
+            if (e.target.closest("a")) return;
+
+            // NUR MOBILE
+            if (window.innerWidth <= 768) {
+
+                // AKTUELLER STATUS
+                const isFlipped =
+                    card.classList.contains("flipped");
+
+                // ALLE ZUERST SCHLIESSEN
+                serviceCards.forEach(c => {
+                    c.classList.remove("flipped");
+                });
+
+                // NUR ÖFFNEN WENN VORHER ZU
+                if (!isFlipped) {
+                    card.classList.add("flipped");
+                }
+            }
+        });
+    });
+
+    // =========================================================
+    // CLOSE CARD WHEN CLICK OUTSIDE
+    // =========================================================
+
+    document.addEventListener("click", (e) => {
+
+        const clickedCard =
+            e.target.closest(".service-card");
+
+        // WENN AUSSERHALB GEKLICKT
+        if (!clickedCard) {
+
+            serviceCards.forEach(card => {
+                card.classList.remove("flipped");
+            });
+        }
+    });
+
     // =========================================================
     // WHATSAPP
     // =========================================================
