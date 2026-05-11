@@ -669,7 +669,7 @@ section {
 .section {
     position: relative;
     padding: 0;
-    color: var(--bg-main);
+
     background: #fff;
 }
 

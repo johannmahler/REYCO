@@ -334,6 +334,14 @@ ${message}
         const button = form.querySelector(".btn-submit");
         const successUI = document.getElementById("form-success");
 
+        window.addEventListener("pageshow", () => {
+
+            successUI?.classList.remove("show");
+
+            button?.classList.remove("success");
+            button?.classList.remove("loading");
+        });
+
         function validateInput(input, group) {
 
             const value = input.value.trim();
