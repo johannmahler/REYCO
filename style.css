@@ -107,11 +107,12 @@ header.scrolled {
     align-items: center;
     justify-content: space-between;
 
-    max-width: 1180px;
+    width: 100%;
+    max-width: 1440px;
 
     margin: 0 auto;
 
-    padding: 18px 24px;
+    padding: 18px 42px;
 
     transition: padding 0.3s ease;
 }
@@ -120,17 +121,7 @@ header.scrolled {
 
 header.scrolled .header-wrapper {
 
-    padding: 12px 24px;
-}
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+    padding: 14px 42px;
 }
 
 /* =========================================================
@@ -142,86 +133,30 @@ header.scrolled .header-wrapper {
     display: flex;
     align-items: center;
 
-    position: relative;
+    flex-shrink: 0;
 
     z-index: 3002;
-}
-
-/* LOGO TEXT */
-
-.logo-text {
-
-    font-size: 1.25rem;
-
-    font-weight: 600;
-
-    letter-spacing: 0.12em;
-
-    text-transform: uppercase;
-
-    color: var(--text-strong);
-
-    text-decoration: none;
-
-    display: inline-block;
-
-    opacity: 0;
-
-    transform: translateY(-10px);
-
-    animation: logoIntro 1.2s ease forwards;
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease,
-        letter-spacing 0.3s ease;
-}
-
-/* LOGO HOVER */
-
-.logo-text:hover {
-
-    color: var(--color-accent);
-
-    transform: translateY(-1px);
-
-    letter-spacing: 0.16em;
 }
 
 /* LOGO IMAGE */
 
 .logo-img {
-    height: 48px;
+
+    height: 64px;
     width: auto;
+
     display: block;
-    transition: all 0.3s ease;
+
+    transition:
+        height 0.3s ease,
+        transform 0.3s ease;
 }
+
+/* SMALLER ON SCROLL */
 
 header.scrolled .logo-img {
-    height: 34px;
-}
 
-/* =========================================================
-   LOGO INTRO ANIMATION
-========================================================= */
-
-@keyframes logoIntro {
-
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-        letter-spacing: 0.4em;
-    }
-
-    60% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        letter-spacing: 0.08em;
-    }
+    height: 54px;
 }
 
 /* =========================================================
@@ -229,8 +164,11 @@ header.scrolled .logo-img {
 ========================================================= */
 
 nav {
+
     display: flex;
     align-items: center;
+
+    margin-left: auto;
 }
 
 /* NAV LIST */
@@ -240,7 +178,7 @@ nav ul {
     display: flex;
     align-items: center;
 
-    gap: 34px;
+    gap: 42px;
 
     list-style: none;
 
@@ -256,14 +194,15 @@ nav a {
 
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 
-    padding: 6px 0;
+    padding: 10px 0;
 
     text-decoration: none;
 
     color: var(--text-medium);
 
-    font-size: 0.95rem;
+    font-size: 1rem;
 
     font-weight: 500;
 
@@ -271,11 +210,10 @@ nav a {
 
     transition:
         color 0.3s ease,
-        opacity 0.3s ease,
         transform 0.3s ease;
 }
 
-/* NAV UNDERLINE */
+/* UNDERLINE */
 
 nav a::after {
 
@@ -284,7 +222,7 @@ nav a::after {
     position: absolute;
 
     left: 0;
-    bottom: -8px;
+    bottom: -6px;
 
     width: 0%;
 
@@ -300,7 +238,7 @@ nav a::after {
     transition: width 0.35s ease;
 }
 
-/* NAV HOVER */
+/* HOVER */
 
 nav a:hover {
 
@@ -310,16 +248,19 @@ nav a:hover {
 }
 
 nav a:hover::after {
+
     width: 100%;
 }
 
-/* ACTIVE NAV */
+/* ACTIVE */
 
 nav a.active {
+
     color: var(--text-strong);
 }
 
 nav a.active::after {
+
     width: 100%;
 }
 
@@ -1049,6 +990,15 @@ section {
     box-shadow: var(--shadow-soft);
 }
 
+/* =========================================================
+   PORTFOLIO HIDE
+========================================================= */
+
+.portfolio-item.hide {
+
+    display: none;
+}
+
 /* PORTFOLIO HOVER */
 
 .portfolio-item:hover {
@@ -1341,6 +1291,7 @@ a:hover {
     background: var(--color-accent);
 
     color: white;
+    min-height: 52px;
 
     padding: 14px;
 
@@ -1357,6 +1308,11 @@ a:hover {
     opacity: 0.9;
 }
 
+/* =========================================================
+   BUTTON LOADING
+========================================================= */
+
+
 /* LOADING */
 
 .btn-submit.loading {
@@ -1368,29 +1324,7 @@ a:hover {
     color: transparent;
 }
 
-/* SPINNER */
 
-.btn-submit.loading::after {
-
-    content: "";
-
-    width: 18px;
-    height: 18px;
-
-    border: 2px solid white;
-    border-top: 2px solid transparent;
-
-    border-radius: 50%;
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    animation: spin 0.8s linear infinite;
-}
 
 /* SUCCESS */
 
@@ -1419,14 +1353,7 @@ a:hover {
     animation: checkPop 0.4s ease forwards;
 }
 
-/* SPIN */
 
-@keyframes spin {
-
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
 
 /* CHECK POP */
 
@@ -1737,6 +1664,38 @@ button,
 ========================================================= */
 
 @media (max-width: 768px) {
+    .header-wrapper {
+
+        padding: 14px 20px;
+        position: relative;
+        justify-content: center;
+    }
+
+    .logo {
+
+        position: absolute;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+
+    /* MOBILE BUTTON RIGHT */
+
+    .mobile-btn {
+
+        margin-left: auto;
+    }
+
+    .logo-img {
+
+        height: 56px;
+    }
+
+    header.scrolled .logo-img {
+
+        height: 48px;
+    }
 
     /* HERO */
 
@@ -1935,5 +1894,181 @@ button,
         opacity: 0;
 
         transform: translateX(20px);
+    }
+}
+
+
+/* =========================
+   BUTTON LOADING STATE
+========================= */
+
+.btn-submit {
+    position: relative;
+    overflow: hidden;
+}
+
+/* spinner */
+.btn-submit.loading .btn-text {
+    opacity: 0;
+}
+
+
+
+
+
+/* =========================
+   ERROR SHAKE
+========================= */
+
+.btn-submit.error {
+    animation: shake 0.4s ease;
+    background: #e63946 !important;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-4px);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+
+    75% {
+        transform: translateX(-4px);
+    }
+}
+
+/* =========================================================
+   PREMIUM FORM UX
+========================================================= */
+
+/* SUCCESS CHECK */
+
+.checkmark {
+
+    font-size: 52px;
+
+    color: #2a9d8f;
+
+    margin-bottom: 12px;
+
+    animation: successPop 0.45s ease;
+}
+
+/* POP ANIMATION */
+
+@keyframes successPop {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+/* HIDE TEXT */
+
+.btn-submit.loading .btn-text {
+
+    opacity: 0;
+}
+
+/* SPINNER */
+
+.btn-submit.loading::after {
+
+    content: "";
+
+    width: 18px;
+    height: 18px;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.9);
+
+    border-top:
+        2px solid transparent;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    animation: spinLoader 0.7s linear infinite;
+}
+
+/* SPIN */
+
+@keyframes spinLoader {
+
+    to {
+        transform:
+            translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* =========================================================
+   SUCCESS BUTTON
+========================================================= */
+
+.btn-submit.success {
+
+    background: #2a9d8f;
+}
+
+/* =========================================================
+   ERROR BUTTON
+========================================================= */
+
+.btn-submit.error {
+
+    background: #e63946 !important;
+
+    animation: shakeButton 0.45s ease;
+}
+
+/* SHAKE */
+
+@keyframes shakeButton {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-4px);
+    }
+
+    80% {
+        transform: translateX(4px);
     }
 }

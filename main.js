@@ -325,97 +325,233 @@ ${message}
     }
 
     // =========================================================
-    // FORM VALIDATION
+    // FORM VALIDATION + PREMIUM UX
     // =========================================================
 
     if (form) {
 
-        const groups = form.querySelectorAll(".input-group");
-        const button = form.querySelector(".btn-submit");
-        const successUI = document.getElementById("form-success");
+        // =====================================================
+        // ELEMENTS
+        // =====================================================
+
+        const groups =
+            form.querySelectorAll(".input-group");
+
+        const button =
+            form.querySelector(".btn-submit");
+
+        const successUI =
+            document.getElementById("form-success");
+
+        // =====================================================
+        // RESET STATES ON PAGE SHOW
+        // =====================================================
 
         window.addEventListener("pageshow", () => {
 
+            // REMOVE SUCCESS POPUP
             successUI?.classList.remove("show");
 
+            // RESET BUTTON STATES
             button?.classList.remove("success");
             button?.classList.remove("loading");
+            button?.classList.remove("error");
         });
+
+        // =====================================================
+        // VALIDATE INPUT
+        // =====================================================
 
         function validateInput(input, group) {
 
+            // TRIM VALUE
             const value = input.value.trim();
+
+            // EMPTY CHECK
             let valid = value !== "";
 
+            // EMAIL VALIDATION
             if (valid && input.type === "email") {
-                valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+                valid =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+                        .test(value);
             }
 
+            // TOGGLE STATES
             group.classList.toggle("error", !valid);
+
             group.classList.toggle("success", valid);
 
             return valid;
         }
 
+        // =====================================================
+        // REALTIME VALIDATION
+        // =====================================================
+
         groups.forEach(group => {
 
-            const input = group.querySelector("input, textarea");
+            const input =
+                group.querySelector("input, textarea");
+
             if (!input) return;
 
+            // VALIDATE ON BLUR
             input.addEventListener("blur", () => {
+
                 validateInput(input, group);
             });
 
+            // LIVE VALIDATION
             input.addEventListener("input", () => {
-                if (group.classList.contains("error")) {
-                    validateInput(input, group);
-                }
+
+                validateInput(input, group);
             });
         });
 
+        // =====================================================
+        // FORM SUBMIT
+        // =====================================================
+
         form.addEventListener("submit", async (e) => {
+
+            // STOP NORMAL SUBMIT
             e.preventDefault();
+
+            // =================================================
+            // VALIDATE ALL FIELDS
+            // =================================================
 
             let valid = true;
 
             groups.forEach(group => {
-                const input = group.querySelector("input, textarea");
+
+                const input =
+                    group.querySelector("input, textarea");
+
                 if (!input) return;
 
+                // VALIDATE FIELD
                 if (!validateInput(input, group)) {
+
                     valid = false;
                 }
             });
 
-            if (!valid) return;
+            // =================================================
+            // INVALID FORM
+            // =================================================
+
+            if (!valid) {
+
+                // ERROR ANIMATION
+                button?.classList.add("error");
+
+                // REMOVE ERROR STATE
+                setTimeout(() => {
+
+                    button?.classList.remove("error");
+
+                }, 600);
+
+                return;
+            }
+
+            // =================================================
+            // LOADING STATE
+            // =================================================
 
             button?.classList.add("loading");
 
+            button.disabled = true;
+
             try {
+
+                // =============================================
+                // SEND FORM TO FORMSPREE
+                // =============================================
+
                 const response = await fetch(form.action, {
+
                     method: "POST",
+
                     body: new FormData(form),
+
                     headers: {
                         "Accept": "application/json"
                     }
                 });
 
-                if (!response.ok) throw new Error();
+                // ERROR RESPONSE
+                if (!response.ok) {
 
+                    throw new Error();
+                }
+
+                // =================================================
+                // SUCCESS STATE
+                // =================================================
+
+                // REMOVE LOADING
                 button?.classList.remove("loading");
+
+                // SUCCESS BUTTON
                 button?.classList.add("success");
 
-                successUI?.classList.add("show");
+                // SHOW SUCCESS POPUP
+                if (successUI) {
 
+                    successUI.classList.remove("show");
+
+                    setTimeout(() => {
+
+                        successUI.classList.add("show");
+
+                    }, 10);
+                }
+
+                // RESET FORM
                 form.reset();
 
+                // =================================================
+                // REMOVE STATES AFTER DELAY
+                // =================================================
+
                 setTimeout(() => {
-                    window.location.href = "gracias.html";
-                }, 2200);
+
+                    // HIDE SUCCESS POPUP
+                    successUI?.classList.remove("show");
+
+                    // RESET BUTTON
+                    button?.classList.remove("success");
+                    // ENABLE BUTTON AGAIN
+                    button.disabled = false;
+
+                }, 2500);
 
             } catch {
+
+                // =================================================
+                // ERROR STATE
+                // =================================================
+
+                // REMOVE LOADING
                 button?.classList.remove("loading");
-                alert("❌ No se pudo enviar el mensaje.");
+                button.disabled = false;
+
+                // ERROR ANIMATION
+                button?.classList.add("error");
+
+                // REMOVE ERROR CLASS
+                setTimeout(() => {
+
+                    button?.classList.remove("error");
+
+                }, 800);
+
+                // ERROR MESSAGE
+                alert("❌ Error al enviar el mensaje.");
             }
         });
     }
