@@ -214,16 +214,15 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("contact-message")?.value || "";
 
         const text =
-            `Hola, soy ${name}.
+            `Hola, soy ${name}:
 
-Estoy interesado en una remodelación.
+Estoy interesado en una presupuesto.
 
 Proyecto:
 ${message}
+¿Podrían contactarme por favor?`;
 
-¿Podrían orientarme sobre disponibilidad y próximos pasos?`;
-
-        const phone = "4917684728565";
+        const phone = "5213313479076";
 
         const url =
             `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;

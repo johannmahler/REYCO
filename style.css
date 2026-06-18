@@ -279,19 +279,13 @@ section {
 .hero {
 
     position: relative;
-
     height: 100vh;
-
     margin-bottom: 60px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     overflow: hidden;
-
     color: white;
-
     text-align: center;
 
     isolation: isolate;
@@ -306,7 +300,7 @@ section {
 
     background:
         linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)),
-        url('img1.jpg');
+        url('images/img1.jpg');
 
     background-size: cover;
     background-position: center;
@@ -1664,6 +1658,36 @@ button,
 ========================================================= */
 
 @media (max-width: 768px) {
+
+    /* =========================================================
+       MOBILE HEADER LAYOUT
+    ========================================================= */
+
+    .header-wrapper {
+
+        position: relative;
+
+        justify-content: center;
+    }
+
+    /* LOGO CENTER */
+
+    .logo {
+
+        position: absolute;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
+
+    /* MOBILE BUTTON RIGHT */
+
+    .mobile-btn {
+
+        margin-left: auto;
+    }
+
     .header-wrapper {
 
         padding: 14px 20px;
